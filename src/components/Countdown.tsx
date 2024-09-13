@@ -1,12 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ShieldCheck } from 'lucide-react'
 import styles from '../styles/components/Countdown.module.css'
+import { ChallengesContext } from '@/contexts/ChallengesContext';
 
 let coutndownTimeout: NodeJS.Timeout;
 
 export function Countdown(){
+    const { startNewChallenge } = useContext(ChallengesContext)
+
     const timeOfExecution = 0.05 * 60 //Para 25 minutos de exercício
     const [time, setTime] = useState(timeOfExecution);
     const [isActive, setIsActive] = useState(false);
@@ -35,6 +38,7 @@ export function Countdown(){
         } else if (isActive && time === 0){
             setHasFinished(true);
             setIsActive(false);
+            startNewChallenge();
         }
     }, [isActive, time])
 
