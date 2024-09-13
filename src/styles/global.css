@@ -6,6 +6,7 @@
 
 :root{
     --white:#fff;
+    --box-color: #fff;
     --background: #F2F3F5;
     --gray-line: #DCDDE0;
     --text: #666666;
@@ -14,6 +15,21 @@
     --red: #E83F5B;
     --green: #4CD62B;
     --blue: #5965E0;
+    --blue-dark: #4953B8;
+    --blue-twitter: #2AA9E0;
+}
+
+.dark-mode:root{
+    --white:#fff;
+    --box-color: #666666;
+    --background: #343841;
+    --gray-line: #DCDDE0;
+    --text: #b1afaf;
+    --text-highlight: #717174;
+    --title: #F2F3F5;
+    --red: #E83F5B;
+    --green: #4CD62B;
+    --blue: #bbbbbb;
     --blue-dark: #4953B8;
     --blue-twitter: #2AA9E0;
 }

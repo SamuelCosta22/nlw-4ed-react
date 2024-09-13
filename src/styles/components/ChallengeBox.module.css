@@ -1,6 +1,6 @@
 .challengeBoxContainer{
-    height: 100%;
-    background: var(--white);
+    height: 95%;
+    background: var(--box-color);
     border-radius: 5px;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     padding: 1.5rem 2rem;
@@ -10,6 +10,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+    margin-top: 1.8rem;
 }
 
 .challengeNotActive{
@@ -18,7 +19,7 @@
     align-items: center;
 }
 .challengeNotActive strong{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 500;
     line-height: 1.4;
 }
@@ -32,6 +33,7 @@
 }
 .challengeNotActive p img{
     margin-bottom: 1rem;
+    width: 4rem;
 }
 
 .challengeActive{
@@ -55,7 +57,7 @@
 }
 .challengeActive main strong{
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: var(--title);
     margin: 1.5rem 0 1rem;
 }

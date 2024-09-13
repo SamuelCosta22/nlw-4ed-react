@@ -1,0 +1,55 @@
+/* Estilos do switch personalizado */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Estilo do slider com bordas arredondadas */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(243, 243, 157);
+    transition: 0.4s;
+    border-radius: 34px;  /* Bordas arredondadas */
+}
+
+.slider:before {
+    position: absolute;
+    content: '☀️'; /* Ícone de sol para light mode */
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: yellow;
+    border-radius: 50%;
+    transition: 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+    content: '🌙'; /* Ícone de lua para dark mode */
+    background-color: #333;
+    color: white;
+}
+
+/* Mudança de cor do background quando ativo */
+input:checked + .slider {
+    background-color: #252525;
+    content: '☁️';
+}
