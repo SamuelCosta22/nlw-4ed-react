@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "../styles/global.css"
-import { ChallengesProvider } from "@/contexts/ChallengesContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,20 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ChallengesProvider>
-      <html lang="pt">
-        <head>
-          <link rel="icon" href="/favicon.png" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@400;500;600&family=Rajdhani:wght@600&display=swap" rel="stylesheet" />
-        </head>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-        </body>
-      </html>
-    </ChallengesProvider>
+    <html lang="pt">
+      <head>
+        <link rel="icon" href="/favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@400;500;600&family=Rajdhani:wght@600&display=swap" rel="stylesheet" />
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
   );
 }

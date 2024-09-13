@@ -2,9 +2,13 @@
 
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import challenges from '../../challenges.json';
+import { LevelUpModal } from '@/components/LevelUpModal';
 
 interface ChallengesProviderProps{
-    children: ReactNode;
+    children: ReactNode,
+    level: number,
+    currentExperience: number,
+    challengesCompleted: number,
 }
 
 interface Challenge{
@@ -23,15 +27,22 @@ interface ChallengesContextData{
     startNewChallenge: () => void,
     resetChallenge: () => void,
     completeChallenge: () => void,
+    closeLevelUpModal: () => void,
 }
 
 export const ChallengesContext = createContext({} as ChallengesContextData);
 
 export function ChallengesProvider({ children }: ChallengesProviderProps){
-    const [level, setLevel] = useState(1);
-    const [currentExperience, setCurrentExperience] = useState(0);
-    const [challengesCompleted, setChallengesCompleted] = useState(0);
+    // Recuperar dados do Local Storage no lado do cliente
+    const storedLevel = Number(localStorage.getItem('level'));
+    const storedExperience = Number(localStorage.getItem('currentExperience'));
+    const storedChallenges = Number(localStorage.getItem('challengesCompleted'));
+
+    const [level, setLevel] = useState(storedLevel ?? 1);
+    const [currentExperience, setCurrentExperience] = useState(storedExperience ?? 0);
+    const [challengesCompleted, setChallengesCompleted] = useState(storedChallenges ?? 0);
     const [activeChallenge, setActiveChallenge] = useState<Challenge | null>(null); // Tipo atualizado
+    const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(true);
 
     const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
@@ -41,6 +52,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps){
 
     function levelUp(){
         setLevel(level + 1);
+        setIsLevelUpModalOpen(true);
     }
 
     function startNewChallenge(){
@@ -79,6 +91,16 @@ export function ChallengesProvider({ children }: ChallengesProviderProps){
         setChallengesCompleted(challengesCompleted + 1);
     }
 
+    function closeLevelUpModal(){
+        setIsLevelUpModalOpen(false)
+    }
+
+    useEffect(() => {
+        localStorage.setItem('level', level.toString())
+        localStorage.setItem('currentExperience', currentExperience.toString())
+        localStorage.setItem('challengesCompleted', challengesCompleted.toString())
+    }, [level, currentExperience, challengesCompleted])
+
     return(
         <ChallengesContext.Provider value={{
                 level, 
@@ -90,9 +112,11 @@ export function ChallengesProvider({ children }: ChallengesProviderProps){
                 activeChallenge,
                 resetChallenge,
                 completeChallenge,
+                closeLevelUpModal,
             }}
         >
             {children}
+            { isLevelUpModalOpen && <LevelUpModal />}
         </ChallengesContext.Provider>
     )
 }
