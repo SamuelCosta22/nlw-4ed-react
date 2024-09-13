@@ -6,9 +6,6 @@ import { LevelUpModal } from '@/components/LevelUpModal';
 
 interface ChallengesProviderProps{
     children: ReactNode,
-    level: number,
-    currentExperience: number,
-    challengesCompleted: number,
 }
 
 interface Challenge{
@@ -42,7 +39,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps){
     const [currentExperience, setCurrentExperience] = useState(storedExperience ?? 0);
     const [challengesCompleted, setChallengesCompleted] = useState(storedChallenges ?? 0);
     const [activeChallenge, setActiveChallenge] = useState<Challenge | null>(null); // Tipo atualizado
-    const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(true);
+    const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
 
     const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
 
